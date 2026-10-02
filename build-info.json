@@ -1,6 +1,6 @@
 {
-  "built_utc": "2026-10-02T19:39:08.176475+00:00",
-  "builder_sha256": "469f43cc7727d67a5e8b2d59a1b6c4130b0c446933daa80ef2324eb2435d41bd",
+  "built_utc": "2026-10-02T20:27:41.200474+00:00",
+  "builder_sha256": "455b4669d88cf571e5a85e88fc018a8a09a83cc5754b553e4f316bf96e772da0",
   "name": "双甜点",
   "format": "GitHub Pages static directory",
   "music_selection": [
@@ -46,8 +46,8 @@
     "right": 28
   },
   "brir_wav_count": 336,
-  "payload_file_count": 358,
-  "payload_bytes": 267032137,
+  "payload_file_count": 357,
+  "payload_bytes": 267029046,
   "largest_file": {
     "path": "music/蔡琴 - 渡口.flac",
     "bytes": 72844350,
@@ -55,12 +55,12 @@
     "source": "music/蔡琴 - 渡口.flac",
     "source_sha256": "837f29796fc4a35a79b8c5e453e4c361233d52a60e60da2d48b8c59e633cd87e"
   },
-  "content_tree_sha256": "07013454b718d92db500eb08870a00ee0ad3f3651c1a665d6920bf906ea0fb8b",
+  "content_tree_sha256": "74678ac4169a45421c7ebc29e11968dc80bcfd50c379f974adf0f2b7813905bd",
   "content_tree_hash_rule": "SHA256 of sorted relative path + NUL + file SHA256 + newline; excludes this build-info.json",
   "source_web": {
     "index.html": "52bc2fc808a655e59fbc4b48e076457a718bf473ac27fcf5d75e3265dd97088d",
     "style.css": "dee87ce41dd72ada5f5b7bc3b424b3650e0eb767043961c965e0886a256e0547",
-    "app.js": "b4e7ab2e0d1109e7017fe90012522ba5cb24e9f084f7f6dbbadcd1166d450ed0"
+    "app.js": "f47e88ede1d385cfbdbdd5cbfa065554d6c772efb1cfa5cb90182c0ac11c53de"
   },
   "source_manifest_sha256": "7dcf385682b8e8f70ebf14b011dc366f59f1ce6dc0d9db0b2c2a6a999c1615fc",
   "removed_stale_managed_files": [],
@@ -81,15 +81,15 @@
     },
     {
       "path": "README.txt",
-      "bytes": 1156,
-      "sha256": "fadd0d1490b216934c79248b04e9b9208de585f801f63b8720f416caaf67073a"
+      "bytes": 1158,
+      "sha256": "91c1859b8d5871578ffcbab70df153b22f592ac2b7616338968e0eaaf986a85f"
     },
     {
       "path": "app.js",
-      "bytes": 44558,
-      "sha256": "0beb34be57f0cc3e4714aa494b99634566c5b63beea1c5e22a64d179eb9a8e44",
+      "bytes": 44562,
+      "sha256": "6cd3299d012f5486c2cf806d174c6ed43be423a9a8652c0ed9a5a9035adae3de",
       "source": "web/app.js",
-      "source_sha256": "b4e7ab2e0d1109e7017fe90012522ba5cb24e9f084f7f6dbbadcd1166d450ed0"
+      "source_sha256": "f47e88ede1d385cfbdbdd5cbfa065554d6c772efb1cfa5cb90182c0ac11c53de"
     },
     {
       "path": "assets/JM-1_DF_reference.txt",
@@ -2561,13 +2561,6 @@
       "sha256": "6cd08326c198a59bc089dbd7ccb9f02fd2e9ec85f449db14e1c42100a9e00457",
       "source": "web/style.css",
       "source_sha256": "dee87ce41dd72ada5f5b7bc3b424b3650e0eb767043961c965e0886a256e0547"
-    },
-    {
-      "path": "发布说明.txt",
-      "bytes": 3097,
-      "sha256": "c2e3436448fd18f6ca06e4e8aa62fdc606da94bfb01dc92b2db1e76157ef6131",
-      "source": "GITHUB_PAGES_发布说明.txt",
-      "source_sha256": "a0c299426b58f403231a55c0a5fa5eb35a7360e7115504c1b58c47effad9a77f"
     }
   ]
 }

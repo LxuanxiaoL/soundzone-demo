@@ -1,4 +1,4 @@
-/* Local stereo → binaural convolution. Shared volume; solo references use a -2 dB listening trim. */
+/* Local stereo → binaural convolution. Shared volume; solo references use a -1.5 dB listening trim. */
 "use strict";
 const $ = (id) => document.getElementById(id);
 const audio = $("musicAudio");
@@ -463,7 +463,7 @@ function makeBank(buffers, centerBuffers, mode) {
   modeGain.channelCount=2;modeGain.channelCountMode="explicit";
   // A bank owns its fixed listening level throughout warming and crossfading.
   // Both ears share this gain; physical FIRs, BRIR data, and binaural balance stay intact.
-  modeGain.gain.value=(mode==="solo_left"||mode==="solo_right")?10**(-2/20):1;
+  modeGain.gain.value=(mode==="solo_left"||mode==="solo_right")?10**(-1.5/20):1;
   const centerMerger=centerBuffers?state.ctx.createChannelMerger(2):null;
   const centerGain=centerBuffers?state.ctx.createGain():null;
   gain.gain.value=0;
