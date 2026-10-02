@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>双甜点 · 声场试听室</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=6cd08326c198a59b">
 </head>
 <body>
   <div class="shell">
@@ -39,8 +39,8 @@
           <section class="panel mode-card">
             <div class="panel-top"><div><div class="eyebrow">LISTENING MODE</div><h2>声场对比</h2></div><span class="small-pill" id="filterKind">固定滤波器</span></div>
             <div class="mode-list" role="group" aria-label="播放模式">
-              <button class="mode-button" data-mode="solo_left"><kbd>1</kbd><span><strong>单左座</strong><small>仅左座扬声器组 · 试听 −2 dB</small></span><span class="mode-check">✓</span></button>
-              <button class="mode-button" data-mode="solo_right"><kbd>2</kbd><span><strong>单右座</strong><small>仅右座扬声器组 · 试听 −2 dB</small></span><span class="mode-check">✓</span></button>
+              <button class="mode-button" data-mode="solo_left"><kbd>1</kbd><span><strong>单左座</strong><small>仅左座扬声器组 · 试听 −1.5 dB</small></span><span class="mode-check">✓</span></button>
+              <button class="mode-button" data-mode="solo_right"><kbd>2</kbd><span><strong>单右座</strong><small>仅右座扬声器组 · 试听 −1.5 dB</small></span><span class="mode-check">✓</span></button>
               <button class="mode-button active" data-mode="dual"><kbd>3</kbd><span><strong>双座同时播放</strong><small id="dualModeHint">左右同曲 · 扬声器滤波</small></span><span class="mode-check">✓</span></button>
             </div>
             <div id="variantRow" class="variant-row" hidden><label for="variantSelect">滤波方案</label><select id="variantSelect"></select></div>
@@ -50,7 +50,7 @@
               <div class="center-trim-scale" aria-hidden="true"><span id="centerTrimMinimum">0.0 dB</span><span id="centerTrimMaximum">−5.0 dB</span></div>
               <div class="center-trim-footer"><p id="centerTrimHint">当前方案暂不支持中心衰减</p><button type="button" id="resetCenterTrim" class="text-button" disabled>恢复默认</button></div>
             </div>
-            <div class="mode-note"><span>◍</span><p>耳机播放所选座位双耳听到的声场。单区参考统一降低 2 dB 试听；切换座位与模式时，音乐时间线保持连续。</p></div>
+            <div class="mode-note"><span>◍</span><p>耳机播放所选座位双耳听到的声场。单区参考统一降低 1.5 dB 试听；切换座位与模式时，音乐时间线保持连续。</p></div>
           </section>
 
           <section class="panel move-card">
@@ -77,6 +77,6 @@
   </div>
   <dialog id="helpDialog"><button class="dialog-close icon-button" id="closeHelp" aria-label="关闭">×</button><div class="eyebrow">QUICK REFERENCE</div><h2>把注意力交给听感。</h2><dl><dt><kbd>Space</kbd></dt><dd>播放 / 暂停</dd><dt><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></dt><dd>单左 / 单右 / 双座滤波</dd><dt><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></dt><dd id="helpMoveHint">移动所选头部，每步 2.5 cm</dd><dt><kbd>T</kbd> / <kbd>Tab</kbd></dt><dd>切换左座 / 右座耳机试听</dd><dt>控件内的 <kbd>Tab</kbd></dt><dd>移动焦点；选中滑杆后用方向键调整</dd><dt><kbd>[</kbd> <kbd>]</kbd></dt><dd>上一首 / 下一首</dd><dt><kbd>R</kbd></dt><dd>所选头部回到中心</dd></dl><p>中心扬声器衰减仅在双座模式生效，S2 / S3 共用一个增益；切换模式后保留滑杆数值。左右座位分别保留各自的位置，音乐时间线保持连续。</p></dialog>
   <audio id="musicAudio" preload="metadata"></audio>
-  <script src="app.js"></script>
+  <script src="app.js?v=311e8843d208f022"></script>
 </body>
 </html>

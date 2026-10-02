@@ -1,6 +1,6 @@
 {
-  "built_utc": "2026-10-02T20:38:40.512290+00:00",
-  "builder_sha256": "ded69bb76a6f5122847e84a8de341d95dd7aa208945f6a86798e46a0ef9e4235",
+  "built_utc": "2026-10-02T20:48:15.534758+00:00",
+  "builder_sha256": "9b6ca005804d5c2c9dd6dcd950c501c44b9b47f008ddc7586ae98292818d5ecf",
   "name": "双甜点",
   "format": "GitHub Pages static directory",
   "music_selection": [
@@ -23,7 +23,7 @@
   },
   "brir_wav_count": 336,
   "payload_file_count": 356,
-  "payload_bytes": 262421467,
+  "payload_bytes": 262422338,
   "largest_file": {
     "path": "music/蔡琴 - 渡口.flac",
     "bytes": 72844350,
@@ -31,10 +31,10 @@
     "source": "dist/github-pages-site/music/蔡琴 - 渡口.flac",
     "source_sha256": "837f29796fc4a35a79b8c5e453e4c361233d52a60e60da2d48b8c59e633cd87e"
   },
-  "content_tree_sha256": "5f1fc194c37bde5d86358399b6c67cf7f3c128cd4847e64cfcb611e6568b9bba",
+  "content_tree_sha256": "817621f0bf2775b9dc49d04d922f01113e67091dab2549f0ecc49a5c51ff3ae2",
   "content_tree_hash_rule": "SHA256 of sorted relative path + NUL + file SHA256 + newline; excludes this build-info.json",
   "source_web": {
-    "index.html": "52bc2fc808a655e59fbc4b48e076457a718bf473ac27fcf5d75e3265dd97088d",
+    "index.html": "b2df2124682d6d42ccaecd8211ba9ac9e44a14cdf64439ef19baeda61b878d53",
     "style.css": "dee87ce41dd72ada5f5b7bc3b424b3650e0eb767043961c965e0886a256e0547",
     "app.js": "db846c71b1e26e8903ad479c9287c78abe99b0d5518e4e1f9b5039f64bb61a62"
   },
@@ -62,8 +62,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 47143,
-      "sha256": "8d050d70be002942d8221f5dfe7273a026d39efa1714b5c1710c725a90e8dd47",
+      "bytes": 47970,
+      "sha256": "311e8843d208f0223200bc5e3140e062b55b2b12b3cfd18fd1bbf049db773f6f",
       "source": "web/app.js",
       "source_sha256": "db846c71b1e26e8903ad479c9287c78abe99b0d5518e4e1f9b5039f64bb61a62"
     },
@@ -2491,10 +2491,10 @@
     },
     {
       "path": "index.html",
-      "bytes": 10675,
-      "sha256": "56891dc46a61809ac9bdc901f7a0d1d51744ea51f7a2a3c2966b263ba536a725",
+      "bytes": 10719,
+      "sha256": "0f8fdcdb78a96237c1a476ddf931a26e259a58ce28d3a1440e8539d4df9ee7ec",
       "source": "web/index.html",
-      "source_sha256": "52bc2fc808a655e59fbc4b48e076457a718bf473ac27fcf5d75e3265dd97088d"
+      "source_sha256": "b2df2124682d6d42ccaecd8211ba9ac9e44a14cdf64439ef19baeda61b878d53"
     },
     {
       "path": "manifest.json",

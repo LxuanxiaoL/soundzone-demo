@@ -348,9 +348,8 @@ async function ensureHeadphoneEQ() {
         if (!state.manifest?.audition_profile) throw new Error("耳机输出均衡缺少匹配的原始声场试听配置");
         if (typeof config.url !== "string" || !config.url.trim()) throw new Error("耳机输出均衡缺少滤波器路径");
         const url = versionedResponseURL(config.url, config.revision);
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`耳机输出均衡加载失败 (${response.status})`);
-        const [buffer] = await decodeImpulse(await response.arrayBuffer(), 1);
+        const bytes = await readSiteResource(url,"arrayBuffer","耳机输出均衡");
+        const [buffer] = await decodeImpulse(bytes, 1);
         const coefficients = buffer.getChannelData(0);
         if (!coefficients.every(Number.isFinite) || !coefficients.some(value => value !== 0)) throw new Error("耳机输出均衡系数无效");
         if (routeId !== state.outputRouteId) throw new Error("耳机输出配置已变化，请再次播放");
@@ -451,7 +450,7 @@ function decodeImpulse(bytes, expectedChannels=4) {
 
 async function impulseBuffers(url) {
   if (state.cache.has(url)) {const cached=state.cache.get(url);state.cache.delete(url);state.cache.set(url,cached);return cached;}
-  const pending=fetch(url).then(response=>{if(!response.ok)throw new Error(`响应文件加载失败 (${response.status})`);return response.arrayBuffer();}).then(decodeImpulse);
+  const pending=readSiteResource(url,"arrayBuffer","声场响应").then(decodeImpulse);
   state.cache.set(url,pending);
   try {const buffers=await pending;while(state.cache.size>28)state.cache.delete(state.cache.keys().next().value);return buffers;}
   catch(error){state.cache.delete(url);throw error;}
@@ -609,7 +608,7 @@ function attachEvents() {
   $("centerTrim").addEventListener("input",event=>setCenterAttenuation(Number(event.target.value)));
   $("resetCenterTrim").addEventListener("click",()=>setCenterAttenuation(centerTrimDefault()));
   $("playPause").addEventListener("click",togglePlay);
-  $("startListening").addEventListener("click",play);
+  $("startListening").addEventListener("click",()=>{if(state.ready)play();else location.reload();});
   audio.addEventListener("playing",()=>{$("startListeningPanel").hidden=true;});
   $("previousTrack").addEventListener("click",()=>stepTrack(-1));$("nextTrack").addEventListener("click",()=>stepTrack(1));
   $("volume").addEventListener("input",event=>{state.volume=Number(event.target.value)/100;state.muted=false;applyVolume();});
@@ -651,11 +650,12 @@ function attachEvents() {
 async function init() {
   attachEvents();updateControls();setSitePreparing(true);
   try {
-    const response=await fetch(new URL("manifest.json", document.baseURI), {cache:"no-cache"}), manifest=await response.json();
+    banner("正在读取声场配置…","loading");
+    const manifest=await readSiteResource(new URL("manifest.json",document.baseURI),"json","声场配置",{cache:"no-store"});
+    banner("正在读取仓库音乐目录…","loading");
     const library=await readSiteMusic(manifest).catch(error=>({music:[],music_dir:"music/",error:error.message}));
     state.tracks=library.music;updatePlaylist();$("musicPath").textContent=library.music_dir;
     if(state.tracks.length)await setTrack(0,false);
-    if(!response.ok)throw new Error(manifest.error??"无法读取声场配置");
     if(!manifest.variants||!Object.keys(manifest.variants).length)throw new Error("声场配置中没有可播放的滤波方案");
     state.manifest=manifest;state.variant=manifest.default_variant??Object.keys(manifest.variants)[0];
     updateHeadphoneEQStatus();
@@ -672,7 +672,23 @@ async function init() {
     await ensureAudio(false);
     state.ready=true;setSitePreparing(false);updatePlaylist();updateControls();responseURL();
     if(library.error)banner(`${library.error} 也可导入本地音乐。`,"error");else banner(readyText());
-  }catch(error){banner(error.message,"error");}
+  }catch(error){
+    banner(error.message,"error");
+    if(!state.tracks.length){$("trackName").textContent="曲目尚未载入";$("musicPath").textContent="请重试加载";}
+    $("startListening").disabled=false;$("startListening").textContent="重新加载试听";
+  }
+}
+
+async function readSiteResource(url, kind, label, options={}, timeoutMs=20000) {
+  const controller=new AbortController(), timeout=setTimeout(()=>controller.abort(),timeoutMs);
+  try {
+    const response=await fetch(url,{...options,signal:controller.signal});
+    if(!response.ok)throw new Error(`${label}加载失败 (${response.status})`);
+    return await response[kind]();
+  } catch(error) {
+    if(error.name==="AbortError")throw new Error(`${label}加载超时，请重试。`);
+    throw error;
+  } finally {clearTimeout(timeout);}
 }
 
 function siteMusicRepository(manifest) {
@@ -706,6 +722,9 @@ async function readRepositoryMusic(repository, manifest) {
         return {id:filename,name:filename.split("/").pop().replace(/\.[^.]+$/,""),filename,url:url.href};
       });
     return {music_dir:prefix,music};
+  }catch(error){
+    if(error.name==="AbortError")throw new Error("读取仓库音乐目录超时，请点击刷新曲目重试。");
+    throw error;
   }finally{clearTimeout(timeout);}
 }
 
