@@ -535,7 +535,7 @@ function applyVolume(smooth=true) {
 
 function updatePlaylist() {
   const select=$("trackSelect");select.replaceChildren();
-  if(!state.tracks.length){const option=new Option("音乐库为空","");select.add(option);select.disabled=true;}
+  if(!state.tracks.length){const option=new Option("音乐库为空","");select.add(option);select.disabled=true;$("trackName").textContent="音乐库为空";$("trackOrigin").textContent="MUSIC FOLDER";$("trackMeta").textContent="添加或导入音乐后即可试听";}
   else {state.tracks.forEach((track,index)=>select.add(new Option(track.name,String(index))));select.disabled=false;select.value=String(state.trackIndex);}
   $("trackCount").textContent=`${state.tracks.length} 首`;
 }
@@ -578,11 +578,11 @@ function stepTrack(delta){setTrack(state.trackIndex+delta,!audio.paused);}
 
 async function refreshMusic() {
   try {
-    const response=await fetch(new URL("manifest.json", document.baseURI), {cache:"no-cache"}), data=await response.json();
-    if(!response.ok)throw new Error("页面曲目读取失败");
+    const data=await readSiteMusic();
     const current=state.tracks[state.trackIndex], wasPlaying=!audio.paused;
     state.tracks=[...(data.music??[]),...state.localTracks];
     state.trackIndex=current?state.tracks.findIndex(track=>track.url===current.url):-1;
+    if(!state.tracks.length){audio.pause();audio.removeAttribute("src");audio.load();$("seek").value=0;$("elapsed").textContent="0:00";$("duration").textContent="0:00";}
     updatePlaylist();$("musicPath").textContent=data.music_dir??"music/";
     if(state.trackIndex<0&&state.tracks.length)await setTrack(0,wasPlaying);
     if(state.manifest)banner(readyText());
@@ -652,7 +652,8 @@ async function init() {
   attachEvents();updateControls();setSitePreparing(true);
   try {
     const response=await fetch(new URL("manifest.json", document.baseURI), {cache:"no-cache"}), manifest=await response.json();
-    state.tracks=manifest.music??[];updatePlaylist();$("musicPath").textContent=manifest.music_dir??"music/";
+    const library=await readSiteMusic(manifest).catch(error=>({music:[],music_dir:"music/",error:error.message}));
+    state.tracks=library.music;updatePlaylist();$("musicPath").textContent=library.music_dir;
     if(state.tracks.length)await setTrack(0,false);
     if(!response.ok)throw new Error(manifest.error??"无法读取声场配置");
     if(!manifest.variants||!Object.keys(manifest.variants).length)throw new Error("声场配置中没有可播放的滤波方案");
@@ -669,8 +670,49 @@ async function init() {
     updateControls();setSitePreparing(true);
     banner("正在准备初始声场…","loading");
     await ensureAudio(false);
-    state.ready=true;setSitePreparing(false);updatePlaylist();updateControls();responseURL();banner(readyText());
+    state.ready=true;setSitePreparing(false);updatePlaylist();updateControls();responseURL();
+    if(library.error)banner(`${library.error} 也可导入本地音乐。`,"error");else banner(readyText());
   }catch(error){banner(error.message,"error");}
+}
+
+function siteMusicRepository(manifest) {
+  const host=location.hostname.toLowerCase();
+  const pages=host.match(/^([a-z0-9-]+)\.github\.io$/);
+  if(pages){
+    const path=new URL("./",document.baseURI).pathname.split("/").filter(Boolean);
+    return `${pages[1]}/${path.length?decodeURIComponent(path[0]):pages[1]+".github.io"}`;
+  }
+  return manifest?.music_library?.repository??null;
+}
+
+async function readRepositoryMusic(repository, manifest) {
+  const [owner,name]=repository.split("/");
+  const branch=manifest?.music_library?.ref??"main";
+  const prefix=(manifest?.music_library?.directory??"music").replace(/^\/+|\/+$/g,"")+"/";
+  const endpoint=new URL(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(name)}/git/trees/${encodeURIComponent(branch)}`);
+  endpoint.searchParams.set("recursive","1");
+  const controller=new AbortController(), timeout=setTimeout(()=>controller.abort(),8000);
+  try{
+    const response=await fetch(endpoint,{cache:"no-store",credentials:"omit",headers:{Accept:"application/vnd.github+json"},signal:controller.signal});
+    if(!response.ok)throw new Error("暂时无法读取仓库音乐目录。");
+    const data=await response.json();
+    if(!Array.isArray(data.tree)||data.truncated)throw new Error("仓库音乐目录未能完整读取。");
+    const base=new URL("./",document.baseURI);
+    const music=data.tree.filter(item=>item.type==="blob"&&item.path.startsWith(prefix)&&/\.(wav|mp3|flac|ogg|opus|m4a|aac|webm|mp4)$/i.test(item.path))
+      .sort((left,right)=>left.path.toLowerCase().localeCompare(right.path.toLowerCase(),"en"))
+      .map(item=>{
+        const filename=item.path.slice(prefix.length), url=new URL(item.path.split("/").map(encodeURIComponent).join("/"),base);
+        url.searchParams.set("v",item.sha);
+        return {id:filename,name:filename.split("/").pop().replace(/\.[^.]+$/,""),filename,url:url.href};
+      });
+    return {music_dir:prefix,music};
+  }finally{clearTimeout(timeout);}
+}
+
+async function readSiteMusic(manifest=state.manifest) {
+  const repository=siteMusicRepository(manifest);
+  if(!repository)throw new Error("尚未配置音乐仓库。");
+  return readRepositoryMusic(repository,manifest);
 }
 
 // Keep the published page interactive only after the initial silent graph is ready.
