@@ -1,0 +1,111 @@
+{
+  "sample_rate": 48000,
+  "speed_of_sound": 343.0,
+  "room": {
+    "width_m": 6.0,
+    "length_m": 8.142857142857,
+    "height_m": 4.285714285714,
+    "rt60_s": 0.3
+  },
+  "speakers": [
+    {
+      "id": "left_outer",
+      "x_m": -1.0,
+      "y_m": 0.5,
+      "z_m": 1.2
+    },
+    {
+      "id": "center_upper",
+      "x_m": 0.0,
+      "y_m": 0.5,
+      "z_m": 1.325
+    },
+    {
+      "id": "center_lower",
+      "x_m": 0.0,
+      "y_m": 0.5,
+      "z_m": 1.075
+    },
+    {
+      "id": "right_outer",
+      "x_m": 1.0,
+      "y_m": 0.5,
+      "z_m": 1.2
+    },
+    {
+      "id": "left_rear_left",
+      "x_m": -0.5875,
+      "y_m": -0.6,
+      "z_m": 1.2,
+      "type": "rear",
+      "owner": "left",
+      "behind_ear_m": 0.1
+    },
+    {
+      "id": "left_rear_right",
+      "x_m": -0.4125,
+      "y_m": -0.6,
+      "z_m": 1.2,
+      "type": "rear",
+      "owner": "left",
+      "behind_ear_m": 0.1
+    },
+    {
+      "id": "right_rear_left",
+      "x_m": 0.4125,
+      "y_m": -0.6,
+      "z_m": 1.2,
+      "type": "rear",
+      "owner": "right",
+      "behind_ear_m": 0.1
+    },
+    {
+      "id": "right_rear_right",
+      "x_m": 0.5875,
+      "y_m": -0.6,
+      "z_m": 1.2,
+      "type": "rear",
+      "owner": "right",
+      "behind_ear_m": 0.1
+    }
+  ],
+  "heads": {
+    "left": {
+      "x_m": -0.5,
+      "y_m": -0.5,
+      "z_m": 1.2
+    },
+    "right": {
+      "x_m": 0.5,
+      "y_m": -0.5,
+      "z_m": 1.2
+    }
+  },
+  "step_m": 0.025,
+  "max_offset_index": 4,
+  "max_offset_index_x": 2,
+  "max_offset_index_y": 4,
+  "image_order": 20,
+  "rir_duration_s": 0.36,
+  "nfft": 32768,
+  "fir_length": 8192,
+  "delay_samples": 2048,
+  "hrtf_file": "assets/sadie1_raw/SADIE1_KEMAR_RAW_48k.npz",
+  "description": "Common RAW HRTF + rigid-sphere near-field physical model; fixed chair-mounted rear sources; final headphone EQ kept outside model",
+  "hrtf_equalization": "none",
+  "head_radius_m": 0.0875,
+  "wall_absorption": 0.48212737071188994,
+  "minimum_head_surface_clearance_m": 0.01,
+  "min_offset_index_x": -2,
+  "min_offset_index_y": -1,
+  "reference_speaker_indices": {
+    "solo_left": [
+      0,
+      1
+    ],
+    "solo_right": [
+      2,
+      3
+    ]
+  }
+}

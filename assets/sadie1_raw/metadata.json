@@ -1,0 +1,159 @@
+{
+  "npz_file": "SADIE1_KEMAR_RAW_48k.npz",
+  "npz_sha256": "51a3ee02f6757db59519acdd37e33991f4f58c32c3fcffa6f4b142a30a2529a8",
+  "array_shape": [
+    1555,
+    2,
+    256
+  ],
+  "unique_geometric_directions": 1550,
+  "duplicate_geometric_direction_groups": [
+    [
+      "RAW/48K_24bit/azi_0_ele_90_RAW.wav",
+      "RAW/48K_24bit/azi_180_ele_90_RAW.wav",
+      "RAW/48K_24bit/azi_270_ele_90_RAW.wav",
+      "RAW/48K_24bit/azi_316_ele_90_RAW.wav",
+      "RAW/48K_24bit/azi_90_ele_90_RAW.wav",
+      "RAW/48K_24bit/azi_94_ele_90_RAW.wav"
+    ]
+  ],
+  "sample_rate_hz": 48000,
+  "samples_per_hrir": 256,
+  "reference_distance_m": 1.5,
+  "coordinates": "azimuth in degrees anticlockwise toward listener left; elevation above horizontal; distance in metres",
+  "channel_order": [
+    "left",
+    "right"
+  ],
+  "diffuse_field_equalized": false,
+  "sample_conversion": "24-bit PCM left-justified int32 / 2**31 -> float32; exact PCM amplitude representation",
+  "additional_amplitude_gain": 1.0,
+  "normalization": "None: no per-direction, per-ear, per-frequency, or global gain normalization",
+  "measurement_system": "Official description states an equalised Equator D5 loudspeaker at 1.5 m; no separate microphone/system calibration or inverse filter is supplied in the archive",
+  "anatomical_response": "Official RAW branch, distinct from DFC and MINP. No DF average or ear-canal baseline has been divided out by this conversion. No individual listener match is claimed.",
+  "low_frequency_limit": "The published RAW responses retain a low-frequency roll-off. No low-frequency extension or compensation is added. Equalised measurement loudspeaker does not establish a perfectly flat full measurement chain.",
+  "global_maximum_absolute_sample": 0.9668534994125366,
+  "unweighted_unique_direction_rms_magnitude_db_pcm_reference_left_right": {
+    "100": [
+      -20.070152282714844,
+      -20.04520606994629
+    ],
+    "500": [
+      -8.702466011047363,
+      -8.802205085754395
+    ],
+    "1000": [
+      -6.830471992492676,
+      -7.088329315185547
+    ],
+    "2000": [
+      -5.173054218292236,
+      -5.619429588317871
+    ],
+    "4000": [
+      -0.1271938681602478,
+      -0.3945555090904236
+    ],
+    "8000": [
+      -7.4852614402771,
+      -7.130023002624512
+    ]
+  },
+  "magnitude_summary_note": "Data-description values only; arithmetic power average over unique directions, not solid-angle weighted and never applied to the signal",
+  "cardinal_timing": [
+    {
+      "azimuth_deg": 0,
+      "elevation_deg": 0,
+      "peak_samples_zero_based_left_right": [
+        49,
+        49
+      ],
+      "onset_5_percent_of_peak_samples_left_right": [
+        42,
+        42
+      ]
+    },
+    {
+      "azimuth_deg": 90,
+      "elevation_deg": 0,
+      "peak_samples_zero_based_left_right": [
+        38,
+        71
+      ],
+      "onset_5_percent_of_peak_samples_left_right": [
+        31,
+        59
+      ]
+    },
+    {
+      "azimuth_deg": 180,
+      "elevation_deg": 0,
+      "peak_samples_zero_based_left_right": [
+        58,
+        51
+      ],
+      "onset_5_percent_of_peak_samples_left_right": [
+        42,
+        42
+      ]
+    },
+    {
+      "azimuth_deg": 270,
+      "elevation_deg": 0,
+      "peak_samples_zero_based_left_right": [
+        71,
+        37
+      ],
+      "onset_5_percent_of_peak_samples_left_right": [
+        59,
+        30
+      ]
+    }
+  ],
+  "peak_sample_range_left_right": [
+    [
+      22,
+      85
+    ],
+    [
+      25,
+      84
+    ]
+  ],
+  "propagation_delay_removed_samples": 0,
+  "propagation_delay_removed_samples_scope": "Samples removed by this conversion only, not a claim about undocumented upstream trimming",
+  "source_reference_flight_delay": "Full 1.5 m flight time is not retained as a literal leading delay: at 343 m/s it is about 210 samples at 48 kHz, whereas frontal peaks are at sample 49. This is an inference from the published impulse timing.",
+  "absolute_upstream_trimming_samples": null,
+  "timing_policy": "All published samples retained without shifts, circular shifts, per-ear alignment, onset trimming, or ITD reconstruction. Add physical room propagation delay once; retain the dataset's existing common processing offset. Do not subtract 1.5/c from these already time-windowed responses.",
+  "itd_table_note": "Official MINP branch lookup table retained as a reference only; not applied to RAW HRIRs, which already carry interaural delays.",
+  "not_a_sadie_ii_reconstruction": true,
+  "comment": "Official SADIE I Subject 001 KEMAR RAW HRIR WAV measurements; no diffuse-field equalization applied by this conversion; not SADIE II D2 and not reconstructed from a DF or JM-1 curve.",
+  "dataset": "SADIE I, Subject 001 KEMAR, official RAW branch",
+  "source_record": "https://zenodo.org/records/12542676",
+  "source_archive_url": "https://zenodo.org/records/12542676/files/Subject_001_Wav.zip?download=1",
+  "source_archive_file": "Subject_001_Wav.zip",
+  "source_archive_bytes": 23337513,
+  "source_archive_md5": "aa120e31f2424be655051a35a6967ea6",
+  "source_archive_sha256": "fa2679ead9190306da0eb4e8e502cf2b9b111cde7dffd803aca0680f753aa5cd",
+  "license": "Apache-2.0",
+  "copyright": "Copyright 2016, University of York",
+  "authors": "Cal Armstrong, Lewis Thresh, Gavin Kearney; Audio Lab, University of York",
+  "documentation": [
+    {
+      "url": "https://www.york.ac.uk/sadie-project/database_old.html",
+      "file": "official_database_old.html",
+      "sha256": "b7d4bbc528b31ada2b8d83ba091ef4569695622da65cd87fc2e8927f3c333621"
+    },
+    {
+      "url": "https://www.york.ac.uk/sadie-project/Subject001.html",
+      "file": "official_Subject001.html",
+      "sha256": "fca57365c409ede5ef6a768a6e48f489a233b3a6e8ccba25c1cc45691affd301"
+    },
+    {
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "file": "LICENSE_APACHE_2.0.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ],
+  "retrieved_utc": "2026-10-02T14:35:55.364460+00:00"
+}

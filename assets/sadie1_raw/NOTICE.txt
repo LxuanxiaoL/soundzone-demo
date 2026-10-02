@@ -1,0 +1,14 @@
+SADIE I Subject 001 KEMAR RAW data
+Copyright 2016, University of York; Apache License 2.0.
+Source: https://zenodo.org/records/12542676
+See official_database_old.html for the original license statement and subject identity.
+This product includes data developed at the Audio Lab, University of York,
+by Cal Armstrong, Lewis Thresh and Gavin Kearney as part of the SADIE Project.
+
+CHANGES: Official 48 kHz RAW stereo PCM samples were converted to a float32 NPZ
+with coordinates parsed from filenames. No EQ, gain normalization or time shift
+was applied. All 1555 files are retained; six north-pole measurements represent
+one geometric direction, giving the documented 1550 unique directions.
+This is a different measurement campaign from SADIE II D2; it is not a recovery
+or synthetic reconstruction of the SADIE II unequalized response.
+The official archive and member hashes preserve the unmodified source files.

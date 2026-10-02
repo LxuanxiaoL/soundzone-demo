@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>双甜点 · 声场试听室</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="双甜点首页"><span class="brand-mark">◉</span><span>双甜点<span class="brand-sub">SOUND FIELD LAB</span></span></a>
+      <div class="header-right"><span class="session-light"></span><span>在线仿真试听</span><button id="helpButton" class="icon-button" title="键盘快捷键" aria-label="键盘快捷键">?</button></div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div><div class="eyebrow">TWO LISTENERS. ONE SONG.</div><h1>在两个座位，听见同一首歌。</h1><p>移动头部，对比单座原始声场与双座滤波声场。请佩戴耳机试听。</p></div>
+        <div class="model-badge"><span class="badge-icon">⌁</span><div><strong>理想平直扬声器</strong><span id="roomSize">房间尺寸读取中</span></div></div>
+      </section>
+
+      <div id="statusBanner" class="status-banner" role="status" aria-live="polite"><span class="spinner"></span>正在读取声场响应…</div>
+
+      <section id="startListeningPanel" class="site-start" aria-label="开始试听"><button id="startListening" type="button" disabled>正在准备试听…</button><p>已内置 4 首音乐 · 建议使用耳机</p></section>
+
+      <div class="workspace">
+        <section class="field-card panel">
+          <div class="panel-top"><div><div class="eyebrow">ROOM / TOP VIEW</div><h2>聆听区域</h2></div><span class="small-pill">前方 ↑</span></div>
+          <div class="field-legend"><span><i class="dot green"></i>左座</span><span><i class="dot orange"></i>右座</span><span><i class="speaker-square"></i>扬声器</span></div>
+          <div class="stage-wrap"><svg id="stage" viewBox="0 0 720 490" role="img" aria-label="扬声器与左右头部的房间俯视图"></svg></div>
+          <div class="field-footer"><span>显示局部聆听区域 · 单位 m</span><span id="speakerSpacing">扬声器配置读取中</span></div>
+          <div class="head-controls">
+            <button class="head-select selected" id="selectLeft" data-head="left"><span class="head-label"><i class="dot green"></i>左座耳机试听 <kbd>T / Tab</kbd></span><strong id="poseLeft">x +0.0 / y +0.0 cm</strong></button>
+            <button class="head-select" id="selectRight" data-head="right"><span class="head-label"><i class="dot orange"></i>右座耳机试听</span><strong id="poseRight">x +0.0 / y +0.0 cm</strong></button>
+          </div>
+        </section>
+
+        <aside class="control-stack">
+          <section class="panel mode-card">
+            <div class="panel-top"><div><div class="eyebrow">LISTENING MODE</div><h2>声场对比</h2></div><span class="small-pill" id="filterKind">固定滤波器</span></div>
+            <div class="mode-list" role="group" aria-label="播放模式">
+              <button class="mode-button" data-mode="solo_left"><kbd>1</kbd><span><strong>单左座</strong><small>仅左座扬声器组 · 试听 −2 dB</small></span><span class="mode-check">✓</span></button>
+              <button class="mode-button" data-mode="solo_right"><kbd>2</kbd><span><strong>单右座</strong><small>仅右座扬声器组 · 试听 −2 dB</small></span><span class="mode-check">✓</span></button>
+              <button class="mode-button active" data-mode="dual"><kbd>3</kbd><span><strong>双座同时播放</strong><small id="dualModeHint">左右同曲 · 扬声器滤波</small></span><span class="mode-check">✓</span></button>
+            </div>
+            <div id="variantRow" class="variant-row" hidden><label for="variantSelect">滤波方案</label><select id="variantSelect"></select></div>
+            <div class="center-trim" id="centerTrimControl">
+              <div class="center-trim-heading"><label for="centerTrim">中心扬声器衰减</label><output id="centerTrimValue" for="centerTrim">−1.5 dB</output></div>
+              <input id="centerTrim" type="range" min="0" max="5" step="0.1" value="1.5" aria-label="中心扬声器衰减" aria-describedby="centerTrimHint" aria-valuetext="−1.5 dB" disabled>
+              <div class="center-trim-scale" aria-hidden="true"><span id="centerTrimMinimum">0.0 dB</span><span id="centerTrimMaximum">−5.0 dB</span></div>
+              <div class="center-trim-footer"><p id="centerTrimHint">当前方案暂不支持中心衰减</p><button type="button" id="resetCenterTrim" class="text-button" disabled>恢复默认</button></div>
+            </div>
+            <div class="mode-note"><span>◍</span><p>耳机播放所选座位双耳听到的声场。单区参考统一降低 2 dB 试听；切换座位与模式时，音乐时间线保持连续。</p></div>
+          </section>
+
+          <section class="panel move-card">
+            <div class="panel-top"><div><div class="eyebrow">HEAD POSITION</div><h2><span id="activeHeadLabel">左座</span>头部位置</h2></div><button id="resetPose" class="text-button">回到中心</button></div>
+            <div class="position-tools"><div class="direction-pad"><button data-move="0,1" class="up" aria-label="头部向前移动">↑</button><button data-move="-1,0" class="left" aria-label="头部向左移动">←</button><span class="center">＋</span><button data-move="1,0" class="right" aria-label="头部向右移动">→</button><button data-move="0,-1" class="down" aria-label="头部向后移动">↓</button></div><div class="position-copy"><strong id="stepLabel">每步 2.5 cm</strong><span id="rangeLabel">横向 / 前后范围读取中</span><small>方向键移动 · T / Tab 切换座位</small></div></div>
+            <p class="fine-print">滤波器固定，头部移动改变接收位置。比较偏离中心后音色与声像的变化。</p>
+          </section>
+        </aside>
+      </div>
+
+      <section class="panel music-card" id="dropZone">
+        <div class="library-top"><div><div class="eyebrow">YOUR MUSIC / LOCAL ONLY</div><h2>音乐库 <span id="trackCount">0 首</span></h2></div><div class="library-actions"><button id="refreshLibrary" class="text-button">↻ 刷新曲目</button><button id="chooseFolder" class="secondary-button">选择文件夹</button><button id="chooseFiles" class="secondary-button">＋ 添加音乐</button><input id="filePicker" type="file" accept="audio/*,.flac,.m4a,.wav,.mp3" multiple hidden><input id="folderPicker" type="file" webkitdirectory multiple hidden></div></div>
+        <div class="library-body"><div class="album-art" aria-hidden="true"><div class="record"><div class="record-center"></div></div><span>SOUND<br>IN SPACE</span></div><div class="track-details"><div id="trackOrigin" class="eyebrow">将音频拖放到这里</div><h3 id="trackName">正在载入试听曲目</h3><p id="trackMeta">支持浏览器可解码的 WAV、MP3、FLAC、M4A 等格式</p><label class="track-select-label" for="trackSelect">当前曲目</label><select id="trackSelect" aria-label="选择音乐" disabled><option>音乐库为空</option></select></div><div class="music-info"><strong>左右始终播放同一首</strong><span>页面曲目可直接播放 · 本地导入不上传</span><code id="musicPath">正在载入页面曲目</code></div></div>
+        <div class="transport"><button id="previousTrack" class="transport-side" aria-label="上一首" title="上一首 [">|‹</button><button id="playPause" class="play-button" disabled aria-label="播放" title="播放 / 暂停 Space"><span id="playIcon">▶</span></button><button id="nextTrack" class="transport-side" aria-label="下一首" title="下一首 ]">›|</button><span id="elapsed" class="time">0:00</span><input id="seek" class="seek" type="range" min="0" max="1000" value="0" aria-label="音乐进度"><span id="duration" class="time">0:00</span><div class="volume-control"><button id="muteButton" class="icon-button" aria-label="静音" title="静音">◖))</button><input id="volume" type="range" min="0" max="100" value="65" aria-label="播放音量"><span id="volumeText">65%</span></div></div>
+      </section>
+
+      <footer class="page-footer"><span><i class="dot green"></i><span id="engineStatus">48 kHz 双耳脉冲响应卷积</span></span><span>Space 播放 / 暂停 <b>·</b> [ / ] 上一首 / 下一首 <b>·</b> 1 / 2 / 3 模式</span></footer>
+      <p id="headphoneEqStatus" class="headphone-eq-status" role="status" aria-live="polite">耳机输出：未启用额外均衡</p>
+      <p id="auditionProfileStatus" class="audition-profile-status" hidden></p>
+      <nav id="artifactLinks" class="artifact-links" aria-label="研究与滤波器文件" hidden><a id="reportLink" href="#" target="_blank" rel="noopener" hidden>查看研究报告 ↗</a><a id="filtersLink" href="#" download hidden>下载 FIR 滤波器 ↓</a></nav>
+      <p id="simulationNote" class="simulation-note">这是理想模型的双耳试听。通用头部模型、房间假设与耳机特性会影响听感；现场效果需要实测传递函数确认。</p>
+    <details class="site-attribution"><summary>素材来源与许可</summary><p><a href="assets/sadie1_raw/LICENSE_APACHE_2.0.txt" download>SADIE 许可</a> · <a href="assets/sadie1_raw/NOTICE.txt" download>SADIE 署名</a> · <a href="assets/sadie1_raw/metadata.json" download>原始数据来源</a> · <a href="assets/JM-1_DF_reference.txt" download>JM1 参考曲线</a></p></details>
+    </main>
+  </div>
+  <dialog id="helpDialog"><button class="dialog-close icon-button" id="closeHelp" aria-label="关闭">×</button><div class="eyebrow">QUICK REFERENCE</div><h2>把注意力交给听感。</h2><dl><dt><kbd>Space</kbd></dt><dd>播放 / 暂停</dd><dt><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></dt><dd>单左 / 单右 / 双座滤波</dd><dt><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></dt><dd id="helpMoveHint">移动所选头部，每步 2.5 cm</dd><dt><kbd>T</kbd> / <kbd>Tab</kbd></dt><dd>切换左座 / 右座耳机试听</dd><dt>控件内的 <kbd>Tab</kbd></dt><dd>移动焦点；选中滑杆后用方向键调整</dd><dt><kbd>[</kbd> <kbd>]</kbd></dt><dd>上一首 / 下一首</dd><dt><kbd>R</kbd></dt><dd>所选头部回到中心</dd></dl><p>中心扬声器衰减仅在双座模式生效，S2 / S3 共用一个增益；切换模式后保留滑杆数值。左右座位分别保留各自的位置，音乐时间线保持连续。</p></dialog>
+  <audio id="musicAudio" preload="metadata"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
