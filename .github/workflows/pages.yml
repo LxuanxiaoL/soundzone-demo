@@ -1,0 +1,40 @@
+name: Publish Soundzone player
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Download the latest single-file player
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          mkdir -p _site
+          curl --fail --location --retry 3 \
+            "https://github.com/${REPOSITORY}/releases/latest/download/Soundzone_Standalone.html" \
+            --output _site/index.html
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
