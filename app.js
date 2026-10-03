@@ -8,7 +8,7 @@ const state = {
   tracks: [], trackIndex: -1, localTracks: [],
   ctx: null, source: null, splitter: null, master: null, bank: null, pendingBank: null,
   requestId: 0, cache: new Map(), muted: false, volume: .65, ready: false, lastResponseError: null,
-  centerAttenuationDb: 1.5, liveBanks: new Set(),
+  centerAttenuationDb: 1.0, liveBanks: new Set(),
   outputBus: null, headphoneEqNode: null, headphoneEqLoad: null, headphoneEqKey: null,
   headphoneEqState: "idle", headphoneEqLabel: "", outputRouteReady: false, outputRouteId: 0,
 };
@@ -232,8 +232,8 @@ function centerTrimText(value) {
 }
 
 function centerTrimDefault() {
-  const trim = centerTrimConfig(), value = Number(trim?.default_db ?? 1.5);
-  return clamp(Number.isFinite(value) ? value : 1.5, trim?.min_db ?? 0, trim?.max_db ?? 5);
+  const trim = centerTrimConfig(), value = Number(trim?.default_db ?? 1.0);
+  return clamp(Number.isFinite(value) ? value : 1.0, trim?.min_db ?? 0, trim?.max_db ?? 5);
 }
 
 function updateCenterTrimControls() {

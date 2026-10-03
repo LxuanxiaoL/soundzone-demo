@@ -1,5 +1,5 @@
 {
-  "built_utc": "2026-10-03T13:10:03.398126+00:00",
+  "built_utc": "2026-10-03T13:23:18.966227+00:00",
   "builder_sha256": "8f89b411d05b52f4362959433cfe7ff621c3579dd0e6a256cf0886d16234adcc",
   "name": "双甜点",
   "format": "GitHub Pages static directory",
@@ -10,8 +10,8 @@
   "music_lookup": "GitHub repository directory API",
   "music_source_directory": "dist/github-pages-site/music",
   "center_trim_default_db": {
-    "latest_four": 1.5,
-    "latest_eight": 1.5
+    "latest_four": 1.0,
+    "latest_eight": 1.0
   },
   "variant_speaker_counts": {
     "latest_four": 4,
@@ -31,24 +31,15 @@
     "source": "dist/github-pages-site/music/Tony Anderson,Bonnie Brooksbank - Bloom.flac",
     "source_sha256": "d08b188f5200efda97a97b0a3db030998fafd2be1daf4f43a3fe26fbc86f5338"
   },
-  "content_tree_sha256": "b7bdca8066513de98339b6d367cf4e4a17a1e614c3007faca41fe0d4ba10e225",
+  "content_tree_sha256": "617a6480e137647c34ccad452eeb19fd2dfb0d46a05204286cab05ff33cff97c",
   "content_tree_hash_rule": "SHA256 of sorted relative path + NUL + file SHA256 + newline; excludes this build-info.json",
   "source_web": {
-    "index.html": "b2df2124682d6d42ccaecd8211ba9ac9e44a14cdf64439ef19baeda61b878d53",
+    "index.html": "01bcd4b1614f78bc3d8dde96738cd731bd1b83865f45fd41b9126cc47e39e201",
     "style.css": "dee87ce41dd72ada5f5b7bc3b424b3650e0eb767043961c965e0886a256e0547",
-    "app.js": "db846c71b1e26e8903ad479c9287c78abe99b0d5518e4e1f9b5039f64bb61a62"
+    "app.js": "ffd8269e3a7668139467412c76cd2fc12d407f7bc2963c43b95dff70c8a90c49"
   },
-  "source_manifest_sha256": "85ba6088393f5ebe923ee279b07af06fef6f8d13f52b0f2b1c1b831aa84e9413",
-  "removed_stale_managed_files": [
-    "finalize_perceptual_v2.py",
-    "generated/experiment_4v8/models/grid/config.json",
-    "generated/perceptual_v2_20261003/audition/eight/filters/fir_matrix_16ch.wav",
-    "generated/perceptual_v2_20261003/audition/four/filters/fir_matrix_8ch.wav",
-    "generated/perceptual_v2_20261003/eight/result.json",
-    "generated/perceptual_v2_20261003/four/result.json",
-    "generated/perceptual_v2_20261003/report.html",
-    "perceptual_v2.py"
-  ],
+  "source_manifest_sha256": "2416bd05f7f7ab2f7a63467b96373c87bf7068828415c7089c00acf98a9be99a",
+  "removed_stale_managed_files": [],
   "initial_audio_behavior": "Prepare the paused graph without resume/play; enable controls afterwards; resume and play synchronously inside the first user gesture.",
   "validation_scope": "Packaging, local resource resolution, output counts and SHA256 only. No browser, audio playback, or tests run by this builder.",
   "files": [
@@ -72,9 +63,9 @@
     {
       "path": "app.js",
       "bytes": 47963,
-      "sha256": "3b5e208d1b93f6b87aeff9c4d0cccf1db899d70bc519f1da04a2c68d4ee89d0e",
+      "sha256": "9ba0fe1f6df2528d9af5bd654b8abb2c4543c9571db50750abf19cd9a23b6699",
       "source": "web/app.js",
-      "source_sha256": "db846c71b1e26e8903ad479c9287c78abe99b0d5518e4e1f9b5039f64bb61a62"
+      "source_sha256": "ffd8269e3a7668139467412c76cd2fc12d407f7bc2963c43b95dff70c8a90c49"
     },
     {
       "path": "assets/JM-1_DF_reference.txt",
@@ -2466,16 +2457,16 @@
     {
       "path": "index.html",
       "bytes": 10719,
-      "sha256": "6c82b4a6283348b5f7c55e868f15beaef5abcaaec1b41ead1325796b8156b35c",
+      "sha256": "4ba8fca3d1ca0b0bc4693830c577e247bca1eebf8308533ecf3e3159609d8861",
       "source": "web/index.html",
-      "source_sha256": "b2df2124682d6d42ccaecd8211ba9ac9e44a14cdf64439ef19baeda61b878d53"
+      "source_sha256": "01bcd4b1614f78bc3d8dde96738cd731bd1b83865f45fd41b9126cc47e39e201"
     },
     {
       "path": "manifest.json",
       "bytes": 95526,
-      "sha256": "c01efd53e19b434ed49b8651a3da85d724a1b21d7efca1cbf0ce6ebfb1ae6001",
+      "sha256": "63834965d3bce97321c6e6aa1143efbb4c14eb5508a1c0ba5a8651b0fbc2c847",
       "source": "generated/manifest.json",
-      "source_sha256": "85ba6088393f5ebe923ee279b07af06fef6f8d13f52b0f2b1c1b831aa84e9413"
+      "source_sha256": "2416bd05f7f7ab2f7a63467b96373c87bf7068828415c7089c00acf98a9be99a"
     },
     {
       "path": "music/01_木鱼定位_左到右7点_每点2下_间隔0.5秒.wav",

@@ -45,8 +45,8 @@
             </div>
             <div id="variantRow" class="variant-row" hidden><label for="variantSelect">滤波方案</label><select id="variantSelect"></select></div>
             <div class="center-trim" id="centerTrimControl">
-              <div class="center-trim-heading"><label for="centerTrim">中心扬声器衰减</label><output id="centerTrimValue" for="centerTrim">−1.5 dB</output></div>
-              <input id="centerTrim" type="range" min="0" max="5" step="0.1" value="1.5" aria-label="中心扬声器衰减" aria-describedby="centerTrimHint" aria-valuetext="−1.5 dB" disabled>
+              <div class="center-trim-heading"><label for="centerTrim">中心扬声器衰减</label><output id="centerTrimValue" for="centerTrim">−1.0 dB</output></div>
+              <input id="centerTrim" type="range" min="0" max="5" step="0.1" value="1.0" aria-label="中心扬声器衰减" aria-describedby="centerTrimHint" aria-valuetext="−1.0 dB" disabled>
               <div class="center-trim-scale" aria-hidden="true"><span id="centerTrimMinimum">0.0 dB</span><span id="centerTrimMaximum">−5.0 dB</span></div>
               <div class="center-trim-footer"><p id="centerTrimHint">当前方案暂不支持中心衰减</p><button type="button" id="resetCenterTrim" class="text-button" disabled>恢复默认</button></div>
             </div>
@@ -77,6 +77,6 @@
   </div>
   <dialog id="helpDialog"><button class="dialog-close icon-button" id="closeHelp" aria-label="关闭">×</button><div class="eyebrow">QUICK REFERENCE</div><h2>把注意力交给听感。</h2><dl><dt><kbd>Space</kbd></dt><dd>播放 / 暂停</dd><dt><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></dt><dd>单左 / 单右 / 双座滤波</dd><dt><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></dt><dd id="helpMoveHint">移动所选头部，每步 2.5 cm</dd><dt><kbd>T</kbd> / <kbd>Tab</kbd></dt><dd>切换左座 / 右座耳机试听</dd><dt>控件内的 <kbd>Tab</kbd></dt><dd>移动焦点；选中滑杆后用方向键调整</dd><dt><kbd>[</kbd> <kbd>]</kbd></dt><dd>上一首 / 下一首</dd><dt><kbd>R</kbd></dt><dd>所选头部回到中心</dd></dl><p>中心扬声器衰减仅在双座模式生效，S2 / S3 共用一个增益；切换模式后保留滑杆数值。左右座位分别保留各自的位置，音乐时间线保持连续。</p></dialog>
   <audio id="musicAudio" preload="metadata"></audio>
-  <script src="app.js?v=3b5e208d1b93f6b8"></script>
+  <script src="app.js?v=9ba0fe1f6df2528d"></script>
 </body>
 </html>

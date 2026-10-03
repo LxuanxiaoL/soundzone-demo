@@ -326,7 +326,7 @@
       "center_trim": {
         "min_db": 0,
         "max_db": 5,
-        "default_db": 1.5,
+        "default_db": 1.0,
         "step_db": 0.1,
         "speakers": [
           1,
@@ -666,7 +666,7 @@
       "center_trim": {
         "min_db": 0,
         "max_db": 5,
-        "default_db": 1.5,
+        "default_db": 1.0,
         "step_db": 0.1,
         "speakers": [
           1,
@@ -1029,7 +1029,7 @@
         "center_trim": {
           "min_db": 0,
           "max_db": 5,
-          "default_db": 1.5,
+          "default_db": 1.0,
           "step_db": 0.1,
           "speakers": [
             1,
@@ -1295,7 +1295,7 @@
         "center_trim": {
           "min_db": 0,
           "max_db": 5,
-          "default_db": 1.5,
+          "default_db": 1.0,
           "step_db": 0.1,
           "speakers": [
             1,
