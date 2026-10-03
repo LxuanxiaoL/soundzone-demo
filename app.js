@@ -197,7 +197,7 @@ function updateVariantInfo() {
   }
   $("artifactLinks").hidden = !links.report && !links.filters;
   $("auditionProfileStatus").hidden = !profile;
-  $("auditionProfileStatus").textContent = profile ? `试听声场：${profile.label ?? profile.id ?? "当前试听配置"} · ${profile.design_matches_audition === true ? "报告与 FIR 使用同一声学模型" : "报告与 FIR 下载保留原设计模型"}` : "";
+  $("auditionProfileStatus").textContent = profile ? `试听声场：${profile.label ?? profile.id ?? "当前试听配置"} · ${profile.design_matches_audition === true ? "固定声场使用同一声学模型" : "当前声场使用固定设计模型"}` : "";
   $("simulationNote").textContent = profile?.note ?? variant.render_note ?? manifest.render_note ?? "";
   updateCenterTrimControls();
 }
